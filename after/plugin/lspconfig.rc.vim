@@ -1,11 +1,13 @@
 " LSP CONFIG
+" sadotsoy
 
 if !exists('g:lspconfig')
   finish
 endif
 
 lua << EOF
-local nvim_lsp = require('lspconfig')
+local lspconfig = require('lspconfig')
+local configs = require('lspconfig/configs')
 local protocol = require('vim.lsp.protocol')
 
 local on_attach = function(client, bufnr)
@@ -18,42 +20,7 @@ local on_attach = function(client, bufnr)
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-
-  if client.resolved_capabilities.document_formatting then
-    vim.api.nvim_command [[augroup Format]]
-    vim.api.nvim_command [[autocmd! * <buffer>]]
-    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
-    vim.api.nvim_command [[augroup END]]
-    end
-
-    --protocol.SymbolKind = { }
-    protocol.CompletionItemKind = {
-      '', -- Text
-      '', -- Method
-      '', -- Function
-      '', -- Constructor
-      '', -- Field
-      '', -- Variable
-      '', -- Class
-      'ﰮ', -- Interface
-      '', -- Module
-      '', -- Property
-      '', -- Unit
-      '', -- Value
-      '', -- Enum
-      '', -- Keyword
-      '﬌', -- Snippet
-      '', -- Color
-      '', -- File
-      '', -- Reference
-      '', -- Folder
-      '', -- EnumMember
-      '', -- Constant
-      '', -- Struct
-      '', -- Event
-      'ﬦ', -- Operator
-      '', -- TypeParameter
-      }
+  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
 -- Setups.
@@ -63,12 +30,14 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(
 )
 
 
-nvim_lsp.flow.setup {
+-- flow setup
+lspconfig.flow.setup {
   on_attach = on_attach,
   capabilities = capabilities
   }
 
-nvim_lsp.tsserver.setup {
+-- tsserver setup
+lspconfig.tsserver.setup {
   on_attach = on_attach,
   filestypes = {
     "typescript", "typescriptreact", "typescript.tsx"
@@ -76,9 +45,40 @@ nvim_lsp.tsserver.setup {
   capabilities = capabilities
   }
 
-nvim_lsp.diagnosticls.setup {
+
+-- lsp-installer setup
+require("nvim-lsp-installer").setup {}
+
+-- telescope setup
+require('telescope').setup {
+extensions = {
+  fzf = {
+    fuzzy = true
+    }
+  }
+}
+require('telescope').load_extension('fzf')
+
+-- Emmet setup
+lspconfig.emmet_ls.setup({
   on_attach = on_attach,
-  filetypes = { 'javascript', 'javascriptreact', 'json', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'pandoc' },
+  capabilities = capabilities
+})
+
+-- lsp diagnosticls setup
+lspconfig.diagnosticls.setup {
+  on_attach = on_attach,
+  filetypes = {
+    'javascript', 
+    'javascriptreact', 
+    'typescript', 
+    'typescriptreact', 
+    'json',
+    'css', 
+    'markdown', 
+    'scss',
+    'go' 
+    },
   init_options = {
     linters = {
       eslint = {
@@ -124,25 +124,16 @@ nvim_lsp.diagnosticls.setup {
     },
     formatFiletypes = {
       css = 'prettier',
+      go = 'prettier',
       javascript = 'prettier',
       javascriptreact = 'prettier',
       json = 'prettier',
+      json = 'prettier',
+      markdonw = 'prettier',
       scss = 'prettier',
-      less = 'prettier',
       typescript = 'prettier',
       typescriptreact = 'prettier',
-      json = 'prettier',
     }
   }
 }
-
-require('telescope').setup {
-extensions = {
-  fzf = {
-    fuzzy = true
-    }
-  }
-}
-
-require('telescope').load_extension('fzf')
 EOF
