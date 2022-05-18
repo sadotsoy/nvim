@@ -5,6 +5,19 @@ call plug#begin()
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-commentary'             " comment with powers
+Plug 'tpope/vim-surround'               " surround
+Plug 'mattn/emmet-vim'                  " the good plugin
+Plug 'luochen1990/rainbow'              " rainbow close surrounds
+Plug 'editorconfig/editorconfig-vim'    " editorconfig
+Plug 'raimondi/delimitmate'             " auto-completion for quotes, etc surrounds.
+
+" Develop
+" == JS
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'yuezk/vim-js'
+" == GO
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " FILE EXPLORER
 Plug 'vifm/vifm.vim'                    " VIFM
@@ -13,9 +26,6 @@ Plug 'vifm/vifm.vim'                    " VIFM
 Plug 'sadotsoy/darkforce-vim'
 
 if has("nvim")
-  "Plug 'kyazdani42/nvim-web-devicons'
-  "Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-  "Plug 'onsails/lspkind-nvim'
   Plug 'neovim/nvim-lspconfig'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim' " need dependencies, check the repo
