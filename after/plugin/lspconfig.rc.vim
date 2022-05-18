@@ -40,11 +40,21 @@ lspconfig.flow.setup {
 lspconfig.tsserver.setup {
   on_attach = on_attach,
   filestypes = {
-    "typescript", "typescriptreact", "typescript.tsx"
+    "typescript", "typescriptreact", "typescript.tsx",
+    "javascript", "javascriptreact"
     },
   capabilities = capabilities
   }
 
+-- Eslint setup
+lspconfig.eslint.setup {
+  on_attach = on_attach,
+  filestypes = {
+    "typescript", "typescriptreact", "typescript.tsx",
+    "javascript", "javascriptreact"
+    },
+  capabilities = capabilities
+  }
 
 -- lsp-installer setup
 require("nvim-lsp-installer").setup {}
@@ -65,75 +75,4 @@ lspconfig.emmet_ls.setup({
   capabilities = capabilities
 })
 
--- lsp diagnosticls setup
-lspconfig.diagnosticls.setup {
-  on_attach = on_attach,
-  filetypes = {
-    'javascript', 
-    'javascriptreact', 
-    'typescript', 
-    'typescriptreact', 
-    'json',
-    'css', 
-    'markdown', 
-    'scss',
-    'go' 
-    },
-  init_options = {
-    linters = {
-      eslint = {
-        command = 'eslint_d',
-        rootPatterns = { '.git' },
-        debounce = 100,
-        args = { '--stdin', '--stdin-filename', '%filepath', '--format', 'json' },
-        sourceName = 'eslint_d',
-        parseJson = {
-          errorsRoot = '[0].messages',
-          line = 'line',
-          column = 'column',
-          endLine = 'endLine',
-          endColumn = 'endColumn',
-          message = '[eslint] ${message} [${ruleId}]',
-          security = 'severity'
-        },
-        securities = {
-          [2] = 'error',
-          [1] = 'warning'
-        }
-      },
-    },
-    filetypes = {
-      javascript = 'eslint',
-      javascriptreact = 'eslint',
-      typescript = 'eslint',
-      typescriptreact = 'eslint',
-    },
-    formatters = {
-      eslint_d = {
-        command = 'eslint_d',
-        rootPatterns = { '.git' },
-        args = { '--stdin', '--stdin-filename', '%filename', '--fix-to-stdout' },
-        rootPatterns = { '.git' },
-      },
-      prettier = {
-        command = 'prettier_d_slim',
-        rootPatterns = { '.git' },
-        -- requiredFiles: { 'prettier.config.js' },
-        args = { '--stdin', '--stdin-filepath', '%filename' }
-      }
-    },
-    formatFiletypes = {
-      css = 'prettier',
-      go = 'prettier',
-      javascript = 'prettier',
-      javascriptreact = 'prettier',
-      json = 'prettier',
-      json = 'prettier',
-      markdonw = 'prettier',
-      scss = 'prettier',
-      typescript = 'prettier',
-      typescriptreact = 'prettier',
-    }
-  }
-}
 EOF
