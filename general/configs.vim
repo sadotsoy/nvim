@@ -5,9 +5,7 @@
 autocmd!
 
 " == GENERAL SETTINGS ======
-let mapleader = ' '
-set shell=/bin/bash                        " set bash for vim command
-set title
+let mapleader = "\<Space>"
 set cmdheight=2                            " More space for displaying messages
 set confirm
 set cursorline                             " active cursorline
@@ -17,6 +15,9 @@ set nu rnu
 set number relativenumber                 " relative lines
 set scroll=5
 set scrolloff=8
+set shell=/bin/bash                        " set bash for vim command
+set title
+set noshowmode
 
 set nowrap
 set backspace=start,eol,indent
@@ -38,10 +39,10 @@ set splitright                             " move focus to the new split
 set autoindent                             " Automatically set indent of new line
 set backspace=indent,eol,start             " Make backspace behave in a same manner
 set expandtab                              " Convert tabs to spaces
-set smarttab                               " inserts blanks according to shiftround, shiftwidth,etc
 set shiftround                             " Round indenty to a multiple of 'shiftwidth'
 set shiftwidth=2                           " Number of spaces to use for indent or unidendt
 set smartindent                            " Tab respects 'tabsot', 'shifwidth'. and 'softtabstop'
+set smarttab                               " inserts blanks according to shiftround, shiftwidth,etc
 set softtabstop=2                          " Edit as if the tabs are 4 characters wide
 set tabstop=2                              " The visible width of the tabs
 
@@ -50,16 +51,19 @@ set ignorecase                  " Sensitive case for local search
 set smartcase
 
 " == FOLDS
+set fillchars=fold:\ | set foldtext=MinimalFold()
+set foldenable
+set foldlevel=1
 set foldmethod=indent
 set foldnestmax=20
-set foldenable
-set fillchars=fold:\ | set foldtext=MinimalFold()
-set foldlevel=1
+
+" === PERFORMANCE
+set lazyredraw                " Don't redraw while executng macros.
 
 " == OTHERS
 filetype plugin indent on                 " detecth the filetype
-set encoding=utf-8
 scriptencoding utf-8
+set encoding=utf-8
 set magic                                 " set magic on, for regex
 set mat=200                               " how many tenths of a second to blink
 set showmatch                             " show matching braces
@@ -78,13 +82,3 @@ set guicursor=n-r:block
       \-blinkwait0
       \,v-ve:block                        " Cursor gui, set cursor shape and blink options to some modes
 
-
-" === PERFORMANCE
-set lazyredraw                " Don't redraw while executng macros.
-
-if has ("unix")
-  let s:uname = system("uname -s")
-  if s:uname == "Darwin\n"
-    set clipboard^=unnamed,unnamedplus         " Yank and Paste with the system clipboard
-  endif
-endif
