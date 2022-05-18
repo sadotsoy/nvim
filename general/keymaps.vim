@@ -125,3 +125,9 @@ nnoremap <silent>gx <Cmd>Lspsaga code_action<CR>
 nnoremap <silent>gj <Cmd>Lspsaga diagnostic_jump_next<CR>
 nnoremap <silent>gk <Cmd>Lspsaga diagnostic_jump_prev<CR>
 nnoremap <silent>go <Cmd>Lspsaga signature_help<CR>
+
+" LSP
+nnoremap <leader>lstp :LspStop<CR>
+nnoremap <leader>lstt :LspStart<CR>
+map <leader>dh :lua vim.diagnostic.disable()<CR>
+map <leader>ds :lua vim.diagnostic.enable()<CR>
