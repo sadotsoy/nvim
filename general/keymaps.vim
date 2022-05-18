@@ -25,9 +25,6 @@ nmap ® :source Session.vim<CR>
 " == SEE ONLY THIS FILE ON THE BUFFER, BEATIFUL FOR DOCUMENTATION
 map <leader>o :only<cr>
 
-" == PRETTIER
-map <leader>pr :ALEFix<cr>
-
 " === PLUG
 map <leader>pi :PlugInstall<CR>
 map <leader>pc :PlugClean<CR>
