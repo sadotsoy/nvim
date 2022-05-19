@@ -103,6 +103,13 @@ map <leader>hn :set hlsearch!<CR>
 map <leader>r :EditVifm .<CR>
 map <leader>e :Vifm<CR>
 
+" == COLORS
+map <leader>hco :ColorToggle<CR>
+map <leader>sco :ColorSwapFgBg<CR>
+" group syntax
+noremap <C-t> :call CheckSynstack()<CR>
+nnoremap <silent> <C-i> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-i>
+
 " == SEARCH
 " TELESCOPE
 nnoremap <C-p> <cmd>Telescope find_files<cr>
@@ -112,6 +119,10 @@ nnoremap <leader>fa <cmd>Telescope live_grep<cr>
 nnoremap <leader>co <cmd>Telescope commands<cr>
 nnoremap <leader>fc <cmd>Telescope colorscheme<cr>
 nnoremap <leader>ma <cmd>Telescope keymaps<cr>
+
+" Format
+nnoremap <silent><leader>f :Format<CR>
+nnoremap <silent><leader>F :FormatWrite<CR>
 
 " SAGA
 nnoremap <silent>K <Cmd>Lspsaga hover_doc<CR>
@@ -126,5 +137,6 @@ nnoremap <silent>go <Cmd>Lspsaga signature_help<CR>
 " LSP
 nnoremap <leader>lstp :LspStop<CR>
 nnoremap <leader>lstt :LspStart<CR>
-map <leader>dh :lua vim.diagnostic.disable()<CR>
+map <leader>dh :lua vim.diagnostic.config({ virtual_text = false })<CR>
 map <leader>ds :lua vim.diagnostic.enable()<CR>
+map <leader>de :lua vim.diagnostic.open_float(nil, {focus=false})<CR>
