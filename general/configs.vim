@@ -18,6 +18,7 @@ set scrolloff=8
 set shell=/bin/bash                        " set bash for vim command
 set title
 set noshowmode
+set hidden                                 " Required to keep multiple open buffers
 
 set nowrap
 set backspace=start,eol,indent
@@ -81,4 +82,3 @@ set guicursor=n-r:block
       \-blinkon100-blinkoff100
       \-blinkwait0
       \,v-ve:block                        " Cursor gui, set cursor shape and blink options to some modes
-

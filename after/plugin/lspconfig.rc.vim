@@ -7,7 +7,6 @@ endif
 
 lua << EOF
 local lspconfig = require('lspconfig')
-local configs = require('lspconfig/configs')
 local protocol = require('vim.lsp.protocol')
 
 local on_attach = function(client, bufnr)
@@ -20,7 +19,7 @@ local on_attach = function(client, bufnr)
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  --buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
 -- Setups.
@@ -29,21 +28,20 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(
   protocol.make_client_capabilities()
 )
 
-
--- flow setup
-lspconfig.flow.setup {
+-- css setup
+lspconfig.cssls.setup {
   on_attach = on_attach,
-  capabilities = capabilities
-  }
+  capabilities = capabilities,
+}
 
 -- tsserver setup
 lspconfig.tsserver.setup {
   on_attach = on_attach,
+  capabilities = capabilities,
   filestypes = {
     "typescript", "typescriptreact", "typescript.tsx",
     "javascript", "javascriptreact"
     },
-  capabilities = capabilities
   }
 
 -- Eslint setup
@@ -56,8 +54,16 @@ lspconfig.eslint.setup {
   capabilities = capabilities
   }
 
+-- Emmet setup
+lspconfig.emmet_ls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities
+})
+
 -- lsp-installer setup
-require("nvim-lsp-installer").setup {}
+require("nvim-lsp-installer").setup {
+  on_attach = on_attach
+  }
 
 -- telescope setup
 require('telescope').setup {
@@ -69,10 +75,11 @@ extensions = {
 }
 require('telescope').load_extension('fzf')
 
--- Emmet setup
-lspconfig.emmet_ls.setup({
-  on_attach = on_attach,
-  capabilities = capabilities
+-- Lsp colors
+require("lsp-colors").setup({
+  Error = "#db4b4b",
+  Warning = "#e0af68",
+  Information = "#0db9d7",
+  Hint = "#10B981"
 })
-
 EOF
