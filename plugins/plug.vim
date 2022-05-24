@@ -12,13 +12,18 @@ Plug 'luochen1990/rainbow'              " rainbow close surrounds
 Plug 'editorconfig/editorconfig-vim'    " editorconfig
 Plug 'raimondi/delimitmate'             " auto-completion for quotes, etc surrounds.
 Plug 'chrisbra/Colorizer'               " Higlight colors
+Plug 'Kachyz/vim-gitmoji'               " gitmoji c-x c-u
 
 " Develop
 " == JS
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'yuezk/vim-js'
 " == GO
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" Distraction free
+Plug 'junegunn/goyo.vim'                " Distraction-free writing in Vim.
+Plug 'junegunn/limelight.vim'           " Higlight the cursor position with goyo looks awesome
 
 " FILE EXPLORER
 Plug 'vifm/vifm.vim'                    " VIFM

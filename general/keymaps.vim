@@ -16,6 +16,9 @@ map <leader>, :e $HOME/.config/nvim/init.vim<CR>
 " == Sort
 map <leader>so :sort<CR>
 
+" == GOYO
+map <leader><ENTER> :Goyo<cr>
+
 " === Sessions
 " ALT + R to load the session
 " ALT + S to save the session
