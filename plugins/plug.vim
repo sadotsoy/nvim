@@ -20,6 +20,8 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'yuezk/vim-js'
 " == GO
 " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" [x]IT
+Plug 'sadotsoy/vim-xit'
 
 " Distraction free
 Plug 'junegunn/goyo.vim'                " Distraction-free writing in Vim.
@@ -30,6 +32,7 @@ Plug 'vifm/vifm.vim'                    " VIFM
 
 " COLORSCHEMES
 Plug 'sadotsoy/darkforce-vim'
+
 
 if has("nvim")
   Plug 'L3MON4D3/LuaSnip'

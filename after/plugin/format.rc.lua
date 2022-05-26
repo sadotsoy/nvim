@@ -6,10 +6,6 @@ local util = require "formatter.util"
 require('formatter').setup {
   -- All formatter configurations are opt-in
   filetype = {
-    lua = {
-      -- Pick from defaults:
-      require('formatter.filetypes.lua').stylua,
-    },
     javascript = {
       require('formatter.filetypes.javascript').prettier,
     },
