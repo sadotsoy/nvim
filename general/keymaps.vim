@@ -73,7 +73,7 @@ map <leader>gp :Gpush<cr>
 map <leader>gs :G<cr>
 map <leader>gv :GV<CR>
 map <leader>gw :Gwrite<cr>
-map <leader>gl :Git log<CR>
+map <leader>gl :GcLog<CR>
 map <leader>glg :Git log --oneline --graph<CR>
 nmap <leader>g1 :diffget //3<CR>
 nmap <leader>g2 :diffget //2<CR>
@@ -122,6 +122,7 @@ nnoremap <leader>fa <cmd>Telescope live_grep<cr>
 nnoremap <leader>co <cmd>Telescope commands<cr>
 nnoremap <leader>fc <cmd>Telescope colorscheme<cr>
 nnoremap <leader>ma <cmd>Telescope keymaps<cr>
+nnoremap <leader>fgs <cmd>Telescope git_status<cr>
 
 " Format
 nnoremap <silent><leader>f :Format<CR>
