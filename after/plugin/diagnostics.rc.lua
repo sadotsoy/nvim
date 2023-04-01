@@ -22,7 +22,7 @@ diagConfig.setup = function()
   -- diagnostic configs
   vim.diagnostic.config(conf)
   vim.o.updatetime = 250
-  -- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+  vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=true})]]
 end
 
 diagConfig.setup()
