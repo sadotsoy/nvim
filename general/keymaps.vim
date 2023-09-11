@@ -101,11 +101,6 @@ map <leader>D :put =strftime('%a %b %d %Y')<CR>
 " Tooggle highlight search
 map <leader>hn :set hlsearch!<CR>
 
-" == FILE MANAGER
-" VIFM
-map <leader>r :EditVifm .<CR>
-map <leader>e :Vifm<CR>
-
 " == COLORS
 map <leader>hco :ColorToggle<CR>
 map <leader>sco :ColorSwapFgBg<CR>
